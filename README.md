@@ -19,7 +19,7 @@ The primary objectives of this project are to manage operations related to airpo
 - [Contact](#Contact)
 ## Introduction
 
-There are five distinct microservices in the system. Among them, two serve as configuration services. One of these allows the utilization of local configurations to run the project.
+There are five distinct microservices in the system. Among them, two serve as configuration services. One of config-service, config-server, allows the utilization of local configurations to run the project.
 
 The third service is the auth-service, where I have implemented JWT token authentication and configured Spring Security for enhanced security.
 
@@ -159,7 +159,7 @@ Feel free to ask if you have any further questions or if there's anything else I
 1. Download the [docker-compose.yml](docker-compose.yml) file on your local.
 2. Ensure that the Docker is running on your local machine.
 3. Navigate to the directory containing the docker-compose.yml file and open PowerShell.
-4. Type the command docker-compose up -d in PowerShell and press Enter.
+4. Type the command `docker-compose up -d` in PowerShell and press Enter.
 5. Wait 30 seconds for running all of container
 6. To perform operations, register through the auth-service http://localhost:8080/swagger-ui/index.html#/, and then log in using your email and password to get your JWT Token.
    Finally, if desired, you can monitor and interact with other APIs using Swagger at http://localhost:8081/swagger-ui/index.html#/ and http://localhost:8082/swagger-ui/index.html#/ .
