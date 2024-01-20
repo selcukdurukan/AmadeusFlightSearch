@@ -1,0 +1,18 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-server-git
+  cloud:
+    config:
+      server:
+        git:
+          uri: "https://github.com/selcukdurukan/Amadeus-Cloud-Config-Yaml"
+          default-label: main
+          skip-ssl-validation: true
+          username: selcukdurukan@outlook.com.tr
+          password: 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
+      enabled: true
+      uri: https://github.com/selcukdurukan/Amadeus-Cloud-Config-Yaml
+      label: main

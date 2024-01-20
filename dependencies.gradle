@@ -1,0 +1,36 @@
+ext {
+
+    versions = [
+            springBoot                  : "3.2.1",
+            lombok                      : "1.18.30",
+            swaggerUI                   : "2.3.0",
+            mapstruct                   : "1.5.5.Final",
+            postgreSQL                  : "42.7.1",
+            h2                          : "2.2.224",
+            springCloud                 : "4.1.0",
+            mySQL                       : "8.3.0",
+            auth0JWT                    : "4.4.0",
+    ]
+
+    libs = [
+            springBootWeb                   : "org.springframework.boot:spring-boot-starter-web:${versions.springBoot}",
+            springBootActuator              : "org.springframework.boot:spring-boot-starter-actuator:${versions.springBoot}",
+            springBootValidation            : "org.springframework.boot:spring-boot-starter-validation:${versions.springBoot}",
+            springBootDataJpa               : "org.springframework.boot:spring-boot-starter-data-jpa:${versions.springBoot}",
+            springBootDevTools              : "org.springframework.boot:spring-boot-devtools:${versions.springBoot}",
+            postgreSQL                      : "org.postgresql:postgresql:${versions.postgreSQL}",
+            lombok                          : "org.projectlombok:lombok:${versions.lombok}",
+            swaggerUI                       : "org.springdoc:springdoc-openapi-starter-webmvc-ui:${versions.swaggerUI}",
+            mapstruct                       : "org.mapstruct:mapstruct:${versions.mapstruct}",
+            mapstructProcessor              : "org.mapstruct:mapstruct-processor:${versions.mapstruct}",
+            h2                              : "com.h2database:h2:${versions.h2}",
+            springBootDataMongo             : "org.springframework.boot:spring-boot-starter-data-mongodb:${versions.springBoot}",
+            springCloudOpenFeign            : "org.springframework.cloud:spring-cloud-starter-openfeign:${versions.springCloud}",
+            springSecurity                  : "org.springframework.boot:spring-boot-starter-security:${versions.springBoot}",
+            mySQL                           : "com.mysql:mysql-connector-j:${versions.mySQL}",
+            auth0JWT                        : "com.auth0:java-jwt:${versions.auth0JWT}",
+            springCloudConfig               : "org.springframework.cloud:spring-cloud-starter-config:${versions.springCloud}",
+            springCloudConfigServer         : "org.springframework.cloud:spring-cloud-config-server:${versions.springCloud}",
+            springCloudConfigClient         : "org.springframework.cloud:spring-cloud-config-client:${versions.springCloud}",
+    ]
+}

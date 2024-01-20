@@ -1,0 +1,46 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/AirportsDB
+    username: postgres
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+JWT:
+  secret-key: "amadeustraveltofuture"
+  issuer: "jwt-token-manager"
+  audience: "amadeus-services"
+
+
+#server:
+#  port: 8081
+#
+#spring:
+#  datasource:
+#    driver-class-name: org.postgresql.Driver
+#    url: jdbc:postgresql://postgresql/AirportsDB
+#    username: postgres
+#    password: root
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: true
+#    properties:
+#      hibernate:
+#        format_sql: true
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+#
+#JWT:
+#  secret-key: "amadeustraveltofuture"
+#  issuer: "jwt-token-manager"
+#  audience: "amadeus-services"

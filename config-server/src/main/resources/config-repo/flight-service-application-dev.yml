@@ -1,0 +1,60 @@
+server:
+  port: 8082
+
+spring:
+  data:
+    mongodb:
+      authentication-database: admin
+      host: localhost
+      port: 27017
+      database: FlightDB
+      username: root
+      password: root
+  jackson:
+    time-zone: Turkey
+    date-format: dd/MM/yyyy - HH:mm
+
+scheduled-outer:
+  url: https://6c9dc3d8-cc13-431f-a11c-611b8af5e7fe.mock.pstmn.io/amadeus/flights
+
+application-feign:
+  airport:
+    ip: localhost
+    port: 8081
+    feign-url: http://localhost:8081/v1/dev/airports
+
+JWT:
+  secret-key: "amadeustraveltofuture"
+  issuer: "jwt-token-manager"
+  audience: "amadeus-services"
+
+
+#server:
+#  port: 8082
+#
+#spring:
+#  data:
+#    mongodb:
+#      authentication-database: admin
+#      host: mongodb
+#      port: 27017
+#      database: FlightDB
+#      username: root
+#      password: root
+#  jackson:
+#    time-zone: Turkey
+#    date-format: dd/MM/yyyy - HH:mm
+#
+#scheduled-outer:
+#  url: https://6c9dc3d8-cc13-431f-a11c-611b8af5e7fe.mock.pstmn.io/amadeus/flights
+#
+#application-feign:
+#  airport:
+#    ip: airport
+#    port: 8081
+#    feign-url: http://airport:8081/v1/dev/airports
+#
+#JWT:
+#  secret-key: "amadeustraveltofuture"
+#  issuer: "jwt-token-manager"
+#  audience: "amadeus-services"

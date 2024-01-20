@@ -1,0 +1,18 @@
+#spring:
+#  cloud:
+#    config:
+#      uri: http://config:8888
+#  config:
+#    import: "configserver:"
+#  application:
+#    name: flight-service-application-dev
+
+
+spring:
+  cloud:
+    config:
+      uri: http://localhost:8888
+  config:
+    import: "configserver:"
+  application:
+    name: flight-service-application-dev
