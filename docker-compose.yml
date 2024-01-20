@@ -63,8 +63,8 @@ services:
       - airport
 
   config:
-    container_name: amadeus_config_git
-    image: "selcukdurukan/config-server-git:v.0.0.1"
+    container_name: amadeus_config
+    image: "selcukdurukan/config-server:v.0.0.1"
     deploy:
       resources:
         limits:

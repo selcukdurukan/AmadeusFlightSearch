@@ -161,6 +161,7 @@ Feel free to ask if you have any further questions or if there's anything else I
 2. Ensure that the Docker is running on your local machine.
 3. Navigate to the directory containing the docker-compose.yml file and open PowerShell.
 4. Type the command docker-compose up -d in PowerShell and press Enter.
+5. Wait 30 seconds for running all of container 
 
 
     
