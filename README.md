@@ -152,7 +152,7 @@ Feel free to ask if you have any further questions or if there's anything else I
 1. After completing the prerequisites, start by downloading the repository to your local machine.
 2. Next, ensure that ports 8080, 8081, 8082, and 8888 are available.
 3. Then, run the services in the following order: config-server, auths-service, airports-service, and flights-service.
-4. To perform operations, register through the authentication service, and then log in using your email and password at http://localhost:8080/swagger-ui/index.html#/
+4. To perform operations, register through the auths-service http://localhost:8080/swagger-ui/index.html#/, and then log in using your email and password at to get your JWT Token.
    Finally, if desired, you can monitor and interact with other APIs using Swagger at http://localhost:8081/swagger-ui/index.html#/ and http://localhost:8082/swagger-ui/index.html#/ .
 
 ## On docker
@@ -160,4 +160,6 @@ Feel free to ask if you have any further questions or if there's anything else I
 2. Ensure that the Docker is running on your local machine.
 3. Navigate to the directory containing the docker-compose.yml file and open PowerShell.
 4. Type the command docker-compose up -d in PowerShell and press Enter.
-5. Wait 30 seconds for running all of container 
+5. Wait 30 seconds for running all of container
+6. To perform operations, register through the auth-service http://localhost:8080/swagger-ui/index.html#/, and then log in using your email and password to get your JWT Token.
+   Finally, if desired, you can monitor and interact with other APIs using Swagger at http://localhost:8081/swagger-ui/index.html#/ and http://localhost:8082/swagger-ui/index.html#/ .
