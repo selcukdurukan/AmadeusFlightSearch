@@ -32,6 +32,7 @@ The remaining two services are the flights-service and airports-service. These s
 * JWT
 * Lombok
 * Docker
+* Cloud Native Buildpack
 * Mapstruct for mapping
 * MySQL in Auth Service
 * PostgreSQL in Airport Service
