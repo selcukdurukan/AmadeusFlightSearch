@@ -11,14 +11,12 @@ The primary objectives of this project are to manage operations related to airpo
     - [Auth service exception](#auth-service-exception)
     - [Airport service exception](#airport-service-exception)
     - [Flight service exception](#flight-service-exception)
-- [Getting Started](#getting-started)
+- [Install](#getting-started)
   - [Locally](#locally)
     - [Prerequisites](#prerequisites)
     - [Installation](#installation)
   - [On docker](#on-docker)
-- [Usage](#usage)
 - [Contact](#Contact)
-
 ## Introduction
 
 There are five distinct microservices in the system. Among them, two serve as configuration services. One of these allows the utilization of local configurations to run the project.
@@ -129,7 +127,7 @@ Let's take a brief look at the Exception messages:
     1244: UPDATE_SAME_AIRPORTS_ERROR - Giving airports' names must not be same
     3255: INVALID_TOKEN - Token is invalid
 
-# Getting Started
+# Install
 
 You can install the project locally on your computer, or alternatively, utilize my docker-compose.yml file to run it on Docker. I will provide step-by-step instructions, but I recommend using the Docker Hub images that I have prepared.
 
@@ -162,6 +160,3 @@ Feel free to ask if you have any further questions or if there's anything else I
 3. Navigate to the directory containing the docker-compose.yml file and open PowerShell.
 4. Type the command docker-compose up -d in PowerShell and press Enter.
 5. Wait 30 seconds for running all of container 
-
-
-    
