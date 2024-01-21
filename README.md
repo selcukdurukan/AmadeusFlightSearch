@@ -160,7 +160,7 @@ Feel free to ask if you have any further questions or if there's anything else I
    Finally, if desired, you can monitor and interact with other APIs using Swagger at http://localhost:8081/swagger-ui/index.html#/ and http://localhost:8082/swagger-ui/index.html#/ .
 
 ## On docker
-1. Ensure that ports 8080, 8081, 8082, and 8888 are available.
+1. Ensure that ports 3306, 5432, 8080, 8081, 8082, 8888, and 27017 are available.
 2. Download the [docker-compose.yml](docker-compose.yml) file on your local.
 3. Ensure that the Docker is running on your local machine.
 4. Navigate to the directory containing the docker-compose.yml file and open PowerShell.
