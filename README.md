@@ -2,23 +2,25 @@
 
 The primary objectives of this project are to manage operations related to airports through the airports service and handle flights using the flight service, both secured by JWT authentication. The flight service also consumes data from an external flights API, leveraging a scheduled task for updates. Furthermore, it enhances the user experience by offering advanced search capabilities for flights.
 ## Table of Contents
-
-- [Introduction](#introduction)
-- [Technologies](#technologies)
-- [Features](#features)
-  - [Rest Api](#rest-api)
-  - [Exception messages list](#exception-messages-list)
-    - [Auth service exception](#auth-service-exception)
-    - [Airport service exception](#airport-service-exception)
-    - [Flight service exception](#flight-service-exception)
-- [Install](#getting-started)
-  - [Locally](#locally)
-    - [Prerequisites](#prerequisites)
-    - [Installation](#installation)
-  - [On docker](#on-docker)
-- [Contact](#Contact)
+<!-- TOC -->
+  * [Table of Contents](#table-of-contents)
+  * [Introduction](#introduction)
+  * [Technologies](#technologies)
+    * [Why microservice architecture?](#why-microservice-architecture)
+  * [Features](#features)
+    * [Rest Api](#rest-api)
+    * [Exception messages list](#exception-messages-list)
+      * [Auth service exception](#auth-service-exception)
+      * [Airport service exception](#airport-service-exception)
+      * [Flight service exception](#flight-service-exception)
+  * [Install](#install)
+  * [Locally](#locally)
+    * [Prerequisites](#prerequisites)
+    * [Installation](#installation)
+  * [On docker](#on-docker)
+  * [Contact](#contact)
+<!-- TOC -->
 ## Introduction
-
 There are five distinct microservices in the system. Among them, two serve as configuration services. One of config-service, config-server, allows the utilization of local configurations to run the project.
 
 The third service is the auth-service, where I have implemented JWT token authentication and configured Spring Security for enhanced security.
@@ -39,6 +41,8 @@ The remaining two services are the flights-service and airports-service. These s
 * MongoDB in Flight Service
 * Swagger Open Api
 
+### Why microservice architecture?
+I have preferred microservice architecture because further operations and adopting new technologies and framework can be handled decoupled way.
 
 Dependencies and their versions:
 
@@ -128,7 +132,7 @@ Let's take a brief look at the Exception messages:
     1244: UPDATE_SAME_AIRPORTS_ERROR - Giving airports' names must not be same
     3255: INVALID_TOKEN - Token is invalid
 
-# Install
+## Install
 
 You can install the project locally on your computer, or alternatively, utilize my docker-compose.yml file to run it on Docker. I will provide step-by-step instructions, but I recommend using the Docker Hub images that I have prepared.
 
@@ -156,10 +160,15 @@ Feel free to ask if you have any further questions or if there's anything else I
    Finally, if desired, you can monitor and interact with other APIs using Swagger at http://localhost:8081/swagger-ui/index.html#/ and http://localhost:8082/swagger-ui/index.html#/ .
 
 ## On docker
-1. Download the [docker-compose.yml](docker-compose.yml) file on your local.
-2. Ensure that the Docker is running on your local machine.
-3. Navigate to the directory containing the docker-compose.yml file and open PowerShell.
-4. Type the command `docker-compose up -d` in PowerShell and press Enter.
-5. Wait 30 seconds for running all of container
-6. To perform operations, register through the auth-service http://localhost:8080/swagger-ui/index.html#/, and then log in using your email and password to get your JWT Token.
+1. Ensure that ports 8080, 8081, 8082, and 8888 are available.
+2. Download the [docker-compose.yml](docker-compose.yml) file on your local.
+3. Ensure that the Docker is running on your local machine.
+4. Navigate to the directory containing the docker-compose.yml file and open PowerShell.
+5. Type the command `docker-compose up -d` in PowerShell and press Enter.
+6. Wait 30 seconds for running all of container
+7. To perform operations, register through the auth-service http://localhost:8080/swagger-ui/index.html#/, and then log in using your email and password to get your JWT Token.
    Finally, if desired, you can monitor and interact with other APIs using Swagger at http://localhost:8081/swagger-ui/index.html#/ and http://localhost:8082/swagger-ui/index.html#/ .
+
+## Contact
+
+If you have trouble and some questions you can reach me using this e-mail address : upfront-seek0b@icloud.com
