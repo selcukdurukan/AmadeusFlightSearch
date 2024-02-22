@@ -1,67 +1,6 @@
 version: "3.8"
 
 services:
-  auth:
-    container_name: amadeus_auth
-    image: "selcukdurukan/auths-service:v.0.0.1"
-    deploy:
-      resources:
-        limits:
-          memory: 700M
-      restart_policy:
-        condition: on-failure
-        delay: 10s
-        max_attempts: 3
-        window: 60s
-    ports:
-      - "8080:8080"
-    networks:
-      - amadeus
-    depends_on:
-      - config
-      - mysql
-
-  airport:
-    container_name: amadeus_airport
-    image: "selcukdurukan/airports-service:v.0.0.1"
-    deploy:
-      resources:
-        limits:
-          memory: 700M
-      restart_policy:
-        condition: on-failure
-        delay: 10s
-        max_attempts: 3
-        window: 60s
-    ports:
-      - "8081:8081"
-    networks:
-      - amadeus
-    depends_on:
-      - config
-      - postgresql
-
-  flight:
-    container_name: amadeus_flight
-    image: "selcukdurukan/flights-service:v.0.0.1"
-    deploy:
-      resources:
-        limits:
-          memory: 700M
-      restart_policy:
-        condition: on-failure
-        delay: 10s
-        max_attempts: 3
-        window: 60s
-    ports:
-      - "8082:8082"
-    networks:
-      - amadeus
-    depends_on:
-      - config
-      - mongodb
-      - airport
-
   config:
     container_name: amadeus_config
     image: "selcukdurukan/config-server:v.0.0.1"
@@ -126,6 +65,67 @@ services:
       MYSQL_PASSWORD: root
     networks:
       - amadeus
+
+  auth:
+    container_name: amadeus_auth
+    image: "selcukdurukan/auths-service:v.0.0.1"
+    deploy:
+      resources:
+        limits:
+          memory: 700M
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 3
+        window: 60s
+    ports:
+      - "8080:8080"
+    networks:
+      - amadeus
+    depends_on:
+      - config
+      - mysql
+
+  airport:
+    container_name: amadeus_airport
+    image: "selcukdurukan/airports-service:v.0.0.1"
+    deploy:
+      resources:
+        limits:
+          memory: 700M
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 3
+        window: 60s
+    ports:
+      - "8081:8081"
+    networks:
+      - amadeus
+    depends_on:
+      - config
+      - postgresql
+
+  flight:
+    container_name: amadeus_flight
+    image: "selcukdurukan/flights-service:v.0.0.1"
+    deploy:
+      resources:
+        limits:
+          memory: 700M
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 3
+        window: 60s
+    ports:
+      - "8082:8082"
+    networks:
+      - amadeus
+    depends_on:
+      - config
+      - mongodb
+      - airport
 
 volumes:
   data: {}
