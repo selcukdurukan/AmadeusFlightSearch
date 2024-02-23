@@ -161,9 +161,9 @@ Feel free to ask if you have any further questions or if there's anything else I
 
 ## On docker
 1. Ensure that ports 3306, 5432, 8080, 8081, 8082, 8888, and 27017 are available.
-2. Download the [docker-compose.yml](docker-compose.yml) file on your local.
+2. Download the [docker-compose.yml](docker-compose.yml) and the [docker-common-config.yml](docker-common-config.yml) file on your local.
 3. Ensure that the Docker is running on your local machine.
-4. Navigate to the directory containing the docker-compose.yml file and open PowerShell.
+4. Navigate to the directory containing the docker-compose.yml and the docker-common-config.yml file and open PowerShell.
 5. Type the command `docker-compose up -d` in PowerShell and press Enter.
 6. Wait 30 seconds for running all of container
 7. To perform operations, register through the auth-service http://localhost:8080/swagger-ui/index.html#/, and then log in using your email and password to get your JWT Token.
