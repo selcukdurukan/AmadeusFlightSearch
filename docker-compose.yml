@@ -3,39 +3,47 @@ version: "3.8"
 services:
   config:
     container_name: amadeus_config
-    image: "selcukdurukan/config-server:v.0.0.1"
-    deploy:
-      resources:
-        limits:
-          memory: 700M
+    image: "selcukdurukan/config-server:v.0.0.2"
+    healthcheck:
+      test: "curl --fail --silent http://localhost:8888/actuator/health/readiness | grep UP || exit 1"
+      timeout: 10s
+      retries: 10
+      interval: 10s
+      start_period: 10s
     ports:
       - "8888:8888"
-    networks:
-      - amadeus
+    extends:
+      file: docker-common-config.yml
+      service: network-deploy-service
 
   postgresql:
     container_name: amadeus_airport_postgresql
     image: postgres
-    deploy:
-      resources:
-        limits:
-          memory: 700M
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      timeout: 10s
+      retries: 10
+      interval: 10s
+      start_period: 10s
     ports:
       - "5432:5432"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=AirportsDB
-    networks:
-      - amadeus
+    extends:
+      file: docker-common-config.yml
+      service: network-deploy-service
 
   mongodb:
     container_name: amadeus_flight_mongo
     image: mongo
-    deploy:
-      resources:
-        limits:
-          memory: 700M
+    healthcheck:
+      test: ["CMD","mongosh", "--eval", "db.adminCommand('ping')"]
+      timeout: 10s
+      retries: 10
+      interval: 10s
+      start_period: 10s
     ports:
       - "27017:27017"
     volumes:
@@ -44,16 +52,19 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=root
       - MONGO_INITDB_DATABASE=FlightDB
-    networks:
-      - amadeus
+    extends:
+      file: docker-common-config.yml
+      service: network-deploy-service
 
   mysql:
     image: mysql:latest
     container_name: amadeus_auths_mysql
-    deploy:
-      resources:
-        limits:
-          memory: 700M
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 10s
+      retries: 10
+      interval: 10s
+      start_period: 10s
     ports:
       - "3306:3306"
     volumes:
@@ -63,69 +74,52 @@ services:
       MYSQL_DATABASE: AuthsDB
       MYSQL_USER: mysql
       MYSQL_PASSWORD: root
-    networks:
-      - amadeus
+    extends:
+      file: docker-common-config.yml
+      service: network-deploy-service
 
   auth:
     container_name: amadeus_auth
-    image: "selcukdurukan/auths-service:v.0.0.1"
-    deploy:
-      resources:
-        limits:
-          memory: 700M
-      restart_policy:
-        condition: on-failure
-        delay: 10s
-        max_attempts: 3
-        window: 60s
+    image: "selcukdurukan/auths-service:v.0.0.2"
     ports:
       - "8080:8080"
-    networks:
-      - amadeus
     depends_on:
-      - config
-      - mysql
+      mysql:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:mysql://mysql:3306/AuthsDB"
+    extends:
+      file: docker-common-config.yml
+      service: microservice-config
 
   airport:
     container_name: amadeus_airport
-    image: "selcukdurukan/airports-service:v.0.0.1"
-    deploy:
-      resources:
-        limits:
-          memory: 700M
-      restart_policy:
-        condition: on-failure
-        delay: 10s
-        max_attempts: 3
-        window: 60s
+    image: "selcukdurukan/airports-service:v.0.0.2"
     ports:
       - "8081:8081"
-    networks:
-      - amadeus
     depends_on:
-      - config
-      - postgresql
+      postgresql:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://postgresql:5432/AirportsDB"
+    extends:
+      file: docker-common-config.yml
+      service: microservice-config
 
   flight:
     container_name: amadeus_flight
-    image: "selcukdurukan/flights-service:v.0.0.1"
-    deploy:
-      resources:
-        limits:
-          memory: 700M
-      restart_policy:
-        condition: on-failure
-        delay: 10s
-        max_attempts: 3
-        window: 60s
+    image: "selcukdurukan/flights-service:v.0.0.2"
     ports:
       - "8082:8082"
-    networks:
-      - amadeus
     depends_on:
-      - config
-      - mongodb
-      - airport
+      mongodb:
+        condition: service_healthy
+    environment:
+      SPRING_DATA_MONGODB_HOST: "mongodb"
+      APPLICATION-FEIGN_AIRPORT_FEIGN-URL: "http://airport:8081/v1/dev/airports"
+    extends:
+      file: docker-common-config.yml
+      service: microservice-config
 
 volumes:
   data: {}
@@ -134,3 +128,9 @@ volumes:
 networks:
   amadeus:
     driver: "bridge"
+
+
+# docker build --build-arg JAR_FILE=config-server/build/libs/config-server-v.0.0.2.jar -t selcukdurukan/config-server:v.0.0.2 .
+# docker build --build-arg JAR_FILE=auths-service/build/libs/auths-service-v.0.0.2.jar -t selcukdurukan/auths-service:v.0.0.2 .
+# docker build --build-arg JAR_FILE=airports-service/build/libs/airports-service-v.0.0.2.jar -t selcukdurukan/airports-service:v.0.0.2 .
+# docker build --build-arg JAR_FILE=flights-service/build/libs/flights-service-v.0.0.2.jar -t selcukdurukan/flights-service:v.0.0.2 .

@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -28,7 +29,7 @@ public class FlightSearchRequestDto {
     private String arrivalAirport;
     @JsonFormat(pattern="dd/MM/yyyy")
     @Schema (description = "Departure date", type = "string", example = "01/01/2025")
-    private Date departureDate;
+    private LocalDate departureDate;
     @JsonFormat(pattern="dd/MM/yyyy")
     @Schema (description = "Return date", type = "string", example = "05/01/2025")
     private Date returnDate;

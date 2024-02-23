@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.List;
 import java.util.Optional;
 
@@ -126,14 +127,14 @@ public class FlightService extends ServiceManager<Flights, String> {
     }
 
     public List<FlightResponseDto> searchFlight(FlightSearchRequestDto dto) {
-        LocalDate date = dto.getDepartureDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        Instant startOfTheDay = date.atStartOfDay().atZone(ZoneId.of("UTC")).toInstant();
-        Instant endOfTheDay = date.plusDays(1).atStartOfDay().atZone(ZoneId.of("UTC")).toInstant();
+        LocalDate date = dto.getDepartureDate();
+        Instant startOfTheDay = date.atStartOfDay().atZone(ZoneOffset.UTC).toInstant();
+        Instant endOfTheDay = date.plusDays(1).atStartOfDay().atZone(ZoneOffset.UTC).toInstant();
         List<Flights> flightsList = repository.searchByQuery(startOfTheDay, endOfTheDay, dto.getDepartureAirport(), dto.getArrivalAirport());
         if (dto.getReturnDate() != null) {
             date = dto.getReturnDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            startOfTheDay = date.atStartOfDay().atZone(ZoneId.of("UTC")).toInstant();
-            endOfTheDay = date.plusDays(1).atStartOfDay().atZone(ZoneId.of("UTC")).toInstant();
+            startOfTheDay = date.atStartOfDay().atZone(ZoneOffset.UTC).toInstant();
+            endOfTheDay = date.plusDays(1).atStartOfDay().atZone(ZoneOffset.UTC).toInstant();
             List<Flights> returnFlightList = repository.searchByQuery(startOfTheDay, endOfTheDay, dto.getArrivalAirport(), dto.getDepartureAirport());
             flightsList.addAll(returnFlightList);
         }

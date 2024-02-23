@@ -1,0 +1,17 @@
+services:
+  network-deploy-service:
+    networks:
+      - amadeus
+    deploy:
+      resources:
+        limits:
+          memory: 700M
+
+  microservice-config:
+    extends:
+      service: network-deploy-service
+    depends_on:
+      config:
+        condition: service_healthy
+    environment:
+      SPRING_CLOUD_CONFIG_URI: "http://config:8888/"

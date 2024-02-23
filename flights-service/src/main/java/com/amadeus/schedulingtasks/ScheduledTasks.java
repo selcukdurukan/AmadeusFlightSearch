@@ -1,6 +1,6 @@
 package com.amadeus.schedulingtasks;
 
-import com.amadeus.dto.request.CreateFlightRequestDto;
+
 import com.amadeus.service.FlightService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -14,8 +14,11 @@ import org.springframework.web.client.RestTemplate;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.ZoneId;
-import java.util.*;
+import java.time.ZoneOffset;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.TimeZone;
 
 @Component
 @RequiredArgsConstructor
@@ -39,7 +42,7 @@ public class ScheduledTasks {
         FlightApiTemplate[] fromApis = restTemplate.getForObject(apiUrl, FlightApiTemplate[].class);
         List<FlightApiTemplate> listApis = new ArrayList<>(Arrays.asList(fromApis));
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
-        formatter.setTimeZone(TimeZone.getTimeZone(ZoneId.systemDefault()));
+        formatter.setTimeZone(TimeZone.getTimeZone(ZoneOffset.UTC));
         for (FlightApiTemplate f : listApis) {
             CreateFlightOuterApiDto createFlightOuterApiDto = CreateFlightOuterApiDto.builder()
                     .id(f.getId())
