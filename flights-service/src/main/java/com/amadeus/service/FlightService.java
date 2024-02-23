@@ -132,7 +132,7 @@ public class FlightService extends ServiceManager<Flights, String> {
         Instant endOfTheDay = date.plusDays(1).atStartOfDay().atZone(ZoneOffset.UTC).toInstant();
         List<Flights> flightsList = repository.searchByQuery(startOfTheDay, endOfTheDay, dto.getDepartureAirport(), dto.getArrivalAirport());
         if (dto.getReturnDate() != null) {
-            date = dto.getReturnDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            date = dto.getReturnDate();
             startOfTheDay = date.atStartOfDay().atZone(ZoneOffset.UTC).toInstant();
             endOfTheDay = date.plusDays(1).atStartOfDay().atZone(ZoneOffset.UTC).toInstant();
             List<Flights> returnFlightList = repository.searchByQuery(startOfTheDay, endOfTheDay, dto.getArrivalAirport(), dto.getDepartureAirport());

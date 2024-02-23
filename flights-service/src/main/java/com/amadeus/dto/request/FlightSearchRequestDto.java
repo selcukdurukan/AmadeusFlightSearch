@@ -32,5 +32,5 @@ public class FlightSearchRequestDto {
     private LocalDate departureDate;
     @JsonFormat(pattern="dd/MM/yyyy")
     @Schema (description = "Return date", type = "string", example = "05/01/2025")
-    private Date returnDate;
+    private LocalDate returnDate;
 }

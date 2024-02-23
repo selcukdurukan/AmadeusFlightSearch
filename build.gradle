@@ -19,7 +19,7 @@ allprojects {
 
 subprojects {
     group = 'com.amadeus'
-    version = 'v.0.0.2'
+    version = 'v.0.0.3'
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
     tasks.withType(JavaCompile) {
