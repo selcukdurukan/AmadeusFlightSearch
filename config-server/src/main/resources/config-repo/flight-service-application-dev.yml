@@ -11,7 +11,7 @@ spring:
       username: root
       password: root
   jackson:
-    time-zone: Turkey
+    time-zone: UTC
     date-format: dd/MM/yyyy - HH:mm
 
 scheduled-outer:

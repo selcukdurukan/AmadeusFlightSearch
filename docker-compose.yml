@@ -3,7 +3,7 @@ version: "3.8"
 services:
   config:
     container_name: amadeus_config
-    image: "selcukdurukan/config-server:v.0.0.3"
+    image: "selcukdurukan/config-server:v.0.0.4"
     healthcheck:
       test: "curl --fail --silent http://localhost:8888/actuator/health/readiness | grep UP || exit 1"
       timeout: 10s
@@ -80,7 +80,7 @@ services:
 
   auth:
     container_name: amadeus_auth
-    image: "selcukdurukan/auths-service:v.0.0.3"
+    image: "selcukdurukan/auths-service:v.0.0.4"
     ports:
       - "8080:8080"
     depends_on:
@@ -94,7 +94,7 @@ services:
 
   airport:
     container_name: amadeus_airport
-    image: "selcukdurukan/airports-service:v.0.0.3"
+    image: "selcukdurukan/airports-service:v.0.0.4"
     ports:
       - "8081:8081"
     depends_on:
@@ -108,7 +108,7 @@ services:
 
   flight:
     container_name: amadeus_flight
-    image: "selcukdurukan/flights-service:v.0.0.3"
+    image: "selcukdurukan/flights-service:v.0.0.4"
     ports:
       - "8082:8082"
     depends_on:
@@ -130,7 +130,7 @@ networks:
     driver: "bridge"
 
 
-# docker build --build-arg JAR_FILE=config-server/build/libs/config-server-v.0.0.3.jar -t selcukdurukan/config-server:v.0.0.3 .
-# docker build --build-arg JAR_FILE=auths-service/build/libs/auths-service-v.0.0.3.jar -t selcukdurukan/auths-service:v.0.0.3 .
-# docker build --build-arg JAR_FILE=airports-service/build/libs/airports-service-v.0.0.3.jar -t selcukdurukan/airports-service:v.0.0.3 .
-# docker build --build-arg JAR_FILE=flights-service/build/libs/flights-service-v.0.0.3.jar -t selcukdurukan/flights-service:v.0.0.3 .
+# docker build --build-arg JAR_FILE=config-server/build/libs/config-server-v.0.0.4.jar -t selcukdurukan/config-server:v.0.0.4 .
+# docker build --build-arg JAR_FILE=auths-service/build/libs/auths-service-v.0.0.4.jar -t selcukdurukan/auths-service:v.0.0.4 .
+# docker build --build-arg JAR_FILE=airports-service/build/libs/airports-service-v.0.0.4.jar -t selcukdurukan/airports-service:v.0.0.4 .
+# docker build --build-arg JAR_FILE=flights-service/build/libs/flights-service-v.0.0.4.jar -t selcukdurukan/flights-service:v.0.0.4 .
